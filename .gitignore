@@ -2,6 +2,7 @@
 .idea
 generator.iml
 TestApiKey.java
+application-local.yml
 
 ### Java template
 # Compiled class file

@@ -1,7 +1,8 @@
 spring:
   application:
     name: zc-ai-agent
-
+  profiles:
+    active: local
 server:
   #后端端口号
   port: 8123
