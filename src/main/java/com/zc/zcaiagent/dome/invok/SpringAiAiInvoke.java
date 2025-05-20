@@ -7,6 +7,7 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,11 +18,20 @@ public class SpringAiAiInvoke implements CommandLineRunner {
     @Autowired
     private DashScopeChatModel dashscopeChatModel;
 
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+
     @Override
     public void run(String... args) throws Exception {
         AssistantMessage assistantMessage = dashscopeChatModel.call(new Prompt("你是什么模型"))
                 .getResult()
                 .getOutput();
         System.out.println(assistantMessage.getText());
+
+
+        redisTemplate.opsForValue().set("ai_test", assistantMessage.getText());
+        Object value = redisTemplate.opsForValue().get("ai_test");
+        System.out.println("从Redis读取的值: " + value);
     }
 }

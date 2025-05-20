@@ -3,6 +3,19 @@ spring:
     name: zc-ai-agent
   profiles:
     active: local
+
+  data:
+    redis:
+      host: 192.168.177.130
+      port: 6379
+      password: Zc.123456
+      database: 0
+      timeout: 5000
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
 server:
   #后端端口号
   port: 8123
@@ -25,3 +38,4 @@ knife4j:
   enable: true
   setting:
     language: zh_cn
+
