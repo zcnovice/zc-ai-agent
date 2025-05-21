@@ -16,6 +16,14 @@ spring:
           max-active: 8
           max-idle: 8
           min-idle: 0
+#ollama大模型导入的
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: deepseek-r1:1.5b
+
+
 server:
   #后端端口号
   port: 8123

@@ -10,16 +10,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+
+// 取消注释即可在 SpringBoot 项目启动时执行
+//@Component
 public class SpringAiAiInvoke implements CommandLineRunner {
 
     @Resource
     private ChatModel  chatModel;
-    @Autowired
+
+
+    //@Autowired
     private DashScopeChatModel dashscopeChatModel;
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    /* 链接Redis */
+        //    @Autowired
+        //    private RedisTemplate<String, Object> redisTemplate;
 
 
     @Override
@@ -30,8 +35,9 @@ public class SpringAiAiInvoke implements CommandLineRunner {
         System.out.println(assistantMessage.getText());
 
 
-        redisTemplate.opsForValue().set("ai_test", assistantMessage.getText());
-        Object value = redisTemplate.opsForValue().get("ai_test");
-        System.out.println("从Redis读取的值: " + value);
+        /* 链接Redis */
+//        redisTemplate.opsForValue().set("ai_test", assistantMessage.getText());
+//        Object value = redisTemplate.opsForValue().get("ai_test");
+//        System.out.println("从Redis读取的值: " + value);
     }
 }
