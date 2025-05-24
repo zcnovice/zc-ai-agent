@@ -7,6 +7,7 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class SpringAIChatClient implements CommandLineRunner {
 
         // 高级用法(ChatClient)
         ChatClient chatClient = ChatClient.builder(chatModel)
-                .defaultSystem("你是恋爱顾问")
+                .defaultSystem("你是编程专家")
                 .build();
 
 //        String response = chatClient.prompt().user("我叫什么名字").call().content();
@@ -60,19 +61,33 @@ public class SpringAIChatClient implements CommandLineRunner {
         //------------------------------------------------------------------------------
 
 
-        //2.返回实体对象
-        ActorFilms actorFilms = chatClient.prompt()
-                .user("你会唱歌吗？")
-                .call()
-                .entity(ActorFilms.class);
+//        //2.返回实体对象
+//        ActorFilms actorFilms = chatClient.prompt()
+//                .user("你会唱歌吗？")
+//                .call()
+//                .entity(ActorFilms.class);
+//
+//        System.out.println("----"+actorFilms+"----");
+//        System.out.println("-----------------------");
 
 
-        System.out.println(actorFilms);
+        //3.返回流式对象
+        Flux<String> stream = chatClient.prompt()
+                .user("讲解一下java")
+                .stream()
+                .content();
 
+        stream.subscribe(
+                data -> System.out.print(data), // 收到每个数据块时处理
+                error -> System.err.println("Error: " + error), // 错误处理
+                () -> System.out.println("\nStream completed!") // 完成回调
+        );
 
+// 需要阻塞主线程（测试用）
+        //Thread.sleep(5000);
 
     }
 
     /* java16正式引入 record 表示这是一个记录类，专门用于存储不可变数据。*/
-    public record ActorFilms(String actor, List<String> movies){}
+    public record ActorFilms(boolean additionalProperties){}
 }

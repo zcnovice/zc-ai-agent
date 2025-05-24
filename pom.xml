@@ -31,6 +31,15 @@
     </properties>
     <dependencies>
 
+
+        <!-- 使用它生成一个 Java 类的 JSON Schema -->
+        <dependency>
+            <groupId>com.github.victools</groupId>
+            <artifactId>jsonschema-generator</artifactId>
+            <version>4.38.0</version>
+        </dependency>
+
+
         <!-- 本地Ollama大模型 -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
@@ -99,6 +108,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
