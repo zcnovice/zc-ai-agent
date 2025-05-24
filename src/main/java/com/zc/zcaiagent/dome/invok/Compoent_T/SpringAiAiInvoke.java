@@ -1,13 +1,10 @@
-package com.zc.zcaiagent.dome.invok;
+package com.zc.zcaiagent.dome.invok.Compoent_T;
 
-import com.alibaba.cloud.ai.dashscope.chat.DashScopeChatModel;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 
@@ -16,11 +13,8 @@ import org.springframework.stereotype.Component;
 public class SpringAiAiInvoke implements CommandLineRunner {
 
     @Resource
-    private ChatModel  chatModel;
+    private ChatModel  dashscopeChatModel;
 
-
-    //@Autowired
-    private DashScopeChatModel dashscopeChatModel;
 
     /* 链接Redis */
         //    @Autowired
