@@ -28,6 +28,7 @@ public class SpringAIChatClient implements CommandLineRunner {
         //ChatResponse response = chatModel.call(new Prompt("你好"));
 
         // 高级用法(ChatClient)
+        //这段代码是在创建并配置一个AI聊天客户端
         ChatClient chatClient = ChatClient.builder(chatModel)
                 .defaultSystem("你是编程专家")
                 .build();
@@ -77,6 +78,13 @@ public class SpringAIChatClient implements CommandLineRunner {
                 .stream()
                 .content();
 
+
+/*
+        Flux可以从Stream中创建()
+        上面的代码就是流式对象
+*/
+
+        //下面使用简单的订阅模式来打印
         stream.subscribe(
                 data -> System.out.print(data), // 收到每个数据块时处理
                 error -> System.err.println("Error: " + error), // 错误处理
