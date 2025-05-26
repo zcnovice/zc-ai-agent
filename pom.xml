@@ -110,6 +110,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 高性能的 Kryo 序列化库 -->
+        <!-- 文件持久化的对话记忆的序列化  -->
+        <dependency>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+            <version>5.6.2</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

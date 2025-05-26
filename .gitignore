@@ -3,6 +3,8 @@
 generator.iml
 TestApiKey.java
 application-local.yml
+tmp
+char-memory
 
 ### Java template
 # Compiled class file

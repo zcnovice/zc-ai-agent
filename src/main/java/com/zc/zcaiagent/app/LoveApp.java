@@ -3,6 +3,8 @@ package com.zc.zcaiagent.app;
 
 
 import com.zc.zcaiagent.advisor.MyLoggerAdvisor;
+import com.zc.zcaiagent.chatmemory.FileBasedChatMemory;
+import com.zc.zcaiagent.chatmemory.FileBasedChatMemory1;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -29,8 +31,15 @@ public class LoveApp {
 
     //构造函数
     public LoveApp(ChatModel dashscopeChatModel) {
+        //初始化基于文件的对话记忆
+        String fileDir = System.getProperty("user.dir") + "/char-memory";
+        ChatMemory chatMemory = new FileBasedChatMemory1(fileDir);
+
         //构建聊天记忆初始化
-        ChatMemory chatMemory = new InMemoryChatMemory();
+        //ChatMemory chatMemory = new InMemoryChatMemory();
+
+
+
         chatClient = ChatClient.builder(dashscopeChatModel)
                 .defaultSystem(SYSTEM_PROMPT)
                 //添加MessageChatMemoryAdvisor顾问，将chatMemory绑定到客户端。
