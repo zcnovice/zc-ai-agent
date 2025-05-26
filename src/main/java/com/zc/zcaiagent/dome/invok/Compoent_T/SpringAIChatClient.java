@@ -19,6 +19,7 @@ public class SpringAIChatClient implements CommandLineRunner {
 
     @Resource
     @Qualifier("dashscopeChatModel")
+    //
     /* 有一个小报错   我的模型有多个(dashscopeChatModel   ollamaChatModel)没有指定这里要用哪一个 */
     private ChatModel chatModel;
 

@@ -1,3 +1,7 @@
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
+
 spring:
   application:
     name: zc-ai-agent

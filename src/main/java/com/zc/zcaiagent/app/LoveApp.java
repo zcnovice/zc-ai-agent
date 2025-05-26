@@ -2,9 +2,11 @@ package com.zc.zcaiagent.app;
 
 
 
+import com.zc.zcaiagent.advisor.MyLoggerAdvisor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
@@ -32,7 +34,8 @@ public class LoveApp {
                 //添加MessageChatMemoryAdvisor顾问，将chatMemory绑定到客户端。
                 .defaultAdvisors(
                         //对话记忆的拦截器
-                        new MessageChatMemoryAdvisor(chatMemory)
+                        new MessageChatMemoryAdvisor(chatMemory),
+                        new MyLoggerAdvisor()
                 )
                 .build();
     }
