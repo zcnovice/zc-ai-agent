@@ -2,8 +2,10 @@ package com.zc.zcaiagent.dome.invok.Compoent_T;
 
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.aop.Advisor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,11 +14,11 @@ import reactor.core.publisher.Flux;
 import java.util.List;
 
 
-@Component
+//@Component
 public class SpringAIChatClient implements CommandLineRunner {
 
     @Resource
-    @Qualifier("ollamaChatModel")
+    @Qualifier("dashscopeChatModel")
     /* 有一个小报错   我的模型有多个(dashscopeChatModel   ollamaChatModel)没有指定这里要用哪一个 */
     private ChatModel chatModel;
 
@@ -43,7 +45,9 @@ public class SpringAIChatClient implements CommandLineRunner {
         //call()--用来触发ai调用的
 
 //        //1.ChatResponse返回的是元数据
-//        ChatResponse response1 = chatClient.prompt()
+//        ChatResponse response1 = chatClient
+//        //创建一个新的对话请求构造器（Prompt对象或类似结构），表示开始定义一次对话请求的配置。
+//                .prompt()
 //                .user("你会一些什么")
 //                .call()
 //                .chatResponse();
@@ -74,7 +78,7 @@ public class SpringAIChatClient implements CommandLineRunner {
 
         //3.返回流式对象
         Flux<String> stream = chatClient.prompt()
-                .user("讲解一下java")
+                .user("人为什么不能用二进制交流")
                 .stream()
                 .content();
 
