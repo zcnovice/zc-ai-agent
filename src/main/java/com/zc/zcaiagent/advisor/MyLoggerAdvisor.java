@@ -28,6 +28,10 @@ public class MyLoggerAdvisor implements CallAroundAdvisor, StreamAroundAdvisor {
 
     private void observeAfter(AdvisedResponse response) {
         log.info("响应结果：{}", response.response().getResult().getOutput().getText());
+        //输入的token数
+        log.info("输入的token数：{}", response.response().getMetadata().getUsage().getPromptTokens());
+        //输出的token数
+        log.info("输出的token数：{}", response.response().getMetadata().getUsage().getCompletionTokens());
     }
 
     public AdvisedResponse aroundCall(AdvisedRequest advisedRequest, CallAroundAdvisorChain chain) {
