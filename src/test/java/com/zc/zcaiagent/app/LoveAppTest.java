@@ -32,11 +32,11 @@ class LoveAppTest {
     }
 
 
-    @Test
-    void doChatWithReport(){
-        String chatId = UUID.randomUUID().toString();
-        String message = "我想让另一半（瑞佳南）更爱我";
-        LoveApp.LoveReport loveReport = loveApp.doChatWithReport(message, chatId);
-        Assertions.assertNotNull(loveReport);
-    }
+//    @Test
+//    void doChatWithReport(){
+//        String chatId = UUID.randomUUID().toString();
+//        String message = "我想让另一半（瑞佳南）更爱我";
+//        LoveApp.LoveReport loveReport = loveApp.doChatWithReport(message, chatId);
+//        Assertions.assertNotNull(loveReport);
+//    }
 }

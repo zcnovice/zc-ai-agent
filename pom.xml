@@ -127,6 +127,19 @@
         </dependency>
 
 
+        <!-- JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+
+        <!-- MySQL Connector/J (JDBC Driver for MySQL) -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope> <!-- 通常在运行时需要 -->
+        </dependency>
     </dependencies>
 
     <build>

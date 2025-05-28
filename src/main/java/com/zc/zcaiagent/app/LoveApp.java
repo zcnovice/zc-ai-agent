@@ -3,12 +3,15 @@ package com.zc.zcaiagent.app;
 import com.zc.zcaiagent.advisor.MyLoggerAdvisor;
 import com.zc.zcaiagent.chatmemory.FileBasedChatMemory;
 import com.zc.zcaiagent.chatmemory.FileBasedChatMemory1;
+import com.zc.zcaiagent.chatmemory.JdbcChatMemory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,11 +24,13 @@ import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvis
 public class LoveApp {
 
     private final ChatClient chatClient;
+    //private final JdbcTemplate jdbcTemplate;
 
     private static final String SYSTEM_PROMPT = "你是一个企业项目经理，擅长分析用户需求，制定项目计划。";
 
 
-    //构造函数
+    @Autowired
+    //构造函数(要使用数据库对接时不要忘记加上, JdbcTemplate jdbcTemplate)
     public LoveApp(ChatModel dashscopeChatModel) {
         //初始化基于文件的对话记忆
         String fileDir = System.getProperty("user.dir") + "/char-memory";
@@ -34,6 +39,9 @@ public class LoveApp {
         //构建聊天记忆初始化
         //ChatMemory chatMemory = new InMemoryChatMemory();
 
+        //自定义的jdbc聊天记忆
+        //this.jdbcTemplate = jdbcTemplate;
+        //ChatMemory chatMemory = new JdbcChatMemory(this.jdbcTemplate);
 
 
         chatClient = ChatClient.builder(dashscopeChatModel)

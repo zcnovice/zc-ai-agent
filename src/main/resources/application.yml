@@ -27,6 +27,17 @@ spring:
       chat:
         model: deepseek-r1:1.5b
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///sys?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+  spring:
+    datasource:
+
+
+
 
 server:
   #后端端口号
