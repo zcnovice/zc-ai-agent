@@ -1,16 +1,12 @@
 package com.zc.zcaiagent.app;
 
-
-
 import com.zc.zcaiagent.advisor.MyLoggerAdvisor;
 import com.zc.zcaiagent.chatmemory.FileBasedChatMemory;
 import com.zc.zcaiagent.chatmemory.FileBasedChatMemory1;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
-import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.stereotype.Component;
@@ -26,14 +22,14 @@ public class LoveApp {
 
     private final ChatClient chatClient;
 
-    private static final String SYSTEM_PROMPT = "你是一个情感分析助手，你会分析用户的情感，并且给出一个情感分析结果";
+    private static final String SYSTEM_PROMPT = "你是一个企业项目经理，擅长分析用户需求，制定项目计划。";
 
 
     //构造函数
     public LoveApp(ChatModel dashscopeChatModel) {
         //初始化基于文件的对话记忆
         String fileDir = System.getProperty("user.dir") + "/char-memory";
-        ChatMemory chatMemory = new FileBasedChatMemory1(fileDir);
+        ChatMemory chatMemory = new FileBasedChatMemory(fileDir);
 
         //构建聊天记忆初始化
         //ChatMemory chatMemory = new InMemoryChatMemory();

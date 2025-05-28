@@ -8,10 +8,8 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.aop.Advisor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 
 //@Component
@@ -102,5 +100,7 @@ public class SpringAIChatClient implements CommandLineRunner {
     }
 
     /* java16正式引入 record 表示这是一个记录类，专门用于存储不可变数据。*/
-    public record ActorFilms(boolean additionalProperties){}
+    public record ActorFilms(boolean additionalProperties){
+
+    }
 }

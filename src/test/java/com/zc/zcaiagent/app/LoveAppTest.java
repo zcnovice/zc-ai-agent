@@ -22,11 +22,11 @@ class LoveAppTest {
         String answer = loveApp.doChat(message, chatId);
         Assertions.assertNotNull(answer);
         // 第二轮
-        message = "我想让另一半（瑞佳南）更爱我";
+        message = "我要制作一个AI相关的网页，你能给我一些建议吗？";
         answer = loveApp.doChat(message, chatId);
         Assertions.assertNotNull(answer);
         // 第三轮
-        message = "我的另一半叫什么来着？刚跟你说过，帮我回忆一下";
+        message = "重新帮我把你刚才说的简短的总结一下";
         answer = loveApp.doChat(message, chatId);
         Assertions.assertNotNull(answer);
     }

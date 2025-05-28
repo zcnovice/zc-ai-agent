@@ -119,6 +119,14 @@
         </dependency>
 
 
+        <!-- springAI  md文件的依赖 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-markdown-document-reader</artifactId>
+            <version>1.0.0-M6</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

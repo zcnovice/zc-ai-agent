@@ -26,31 +26,13 @@ public class FileBasedChatMemory implements ChatMemory {
     private static final Kryo kryo = new Kryo();
 
     //可以直接粘贴的
-//    static {
-//        kryo.setRegistrationRequired(false);
-//        // 设置实例化策略
-//        kryo.setInstantiatorStrategy(new StdInstantiatorStrategy());
-//    }
-
     static {
         kryo.setRegistrationRequired(false);
         // 设置实例化策略
         kryo.setInstantiatorStrategy(new StdInstantiatorStrategy());
-
-        // 新增Spring AI Message类的注册
-        kryo.register(org.springframework.ai.chat.messages.UserMessage.class);
-        kryo.register(org.springframework.ai.chat.messages.AssistantMessage.class);
-        kryo.register(org.springframework.ai.chat.messages.SystemMessage.class);
-        kryo.setReferences(true);
-
-        // 新增枚举序列化配置（添加在最后）
-        kryo.addDefaultSerializer(
-                org.springframework.ai.chat.messages.MessageType.class,
-                new com.esotericsoftware.kryo.serializers.EnumNameSerializer(
-                        org.springframework.ai.chat.messages.MessageType.class
-                )
-        );
     }
+
+
 
     // 构造对象时，指定文件保存目录
     public FileBasedChatMemory(String dir) {
@@ -65,10 +47,10 @@ public class FileBasedChatMemory implements ChatMemory {
     }
 
     /* 保存一条消息 */
-    @Override
-    public void add(String conversationId, Message message) {
-        saveConversation(conversationId,List.of(message));
-    }
+//    @Override
+//    public void add(String conversationId, Message message) {
+//        saveConversation(conversationId,List.of(message));
+//    }
 
     /* 保存多条消息 */
     @Override
