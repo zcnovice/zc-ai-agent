@@ -21,7 +21,7 @@ public class SiliconflowAPI {
                 .put("messages", JSONUtil.createArray()
                         .put(JSONUtil.createObj()
                                 .put("role", "user")
-                                .put("content", "我叫什么名字")))
+                                .put("content", "你好，听说你5月28号更新了")))
                 /* 流式输出 */
                 .put("stream", false)
                 /* 生成的最大token数，控制回复长度。 */

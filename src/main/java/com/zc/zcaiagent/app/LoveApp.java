@@ -4,12 +4,15 @@ import com.zc.zcaiagent.advisor.MyLoggerAdvisor;
 import com.zc.zcaiagent.chatmemory.FileBasedChatMemory;
 import com.zc.zcaiagent.chatmemory.FileBasedChatMemory1;
 import com.zc.zcaiagent.chatmemory.JdbcChatMemory;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -26,7 +29,7 @@ public class LoveApp {
     private final ChatClient chatClient;
     //private final JdbcTemplate jdbcTemplate;
 
-    private static final String SYSTEM_PROMPT = "你是一个企业项目经理，擅长分析用户需求，制定项目计划。";
+    private static final String SYSTEM_PROMPT = "你是一个情感分析助手，你会分析用户的情感，并且给出一个情感分析结果";
 
 
     @Autowired
@@ -94,5 +97,28 @@ public class LoveApp {
 
         log.info("loveReport:{}",loveReport);
         return loveReport;
+    }
+
+
+    //下面是、
+    /* 引入之前定义的Bean */
+    @Resource
+    private VectorStore loveAppVectorStore;
+
+    public String doChatWithRag(String message, String chatId) {
+        ChatResponse chatResponse = chatClient
+                .prompt()
+                .user(message)
+                .advisors(spec -> spec.param(CHAT_MEMORY_CONVERSATION_ID_KEY, chatId)
+                        .param(CHAT_MEMORY_RETRIEVE_SIZE_KEY, 10))
+                // 开启日志，便于观察效果
+                .advisors(new MyLoggerAdvisor())
+                // 应用知识库问答
+                .advisors(new QuestionAnswerAdvisor(loveAppVectorStore))
+                .call()
+                .chatResponse();
+        String content = chatResponse.getResult().getOutput().getText();
+        log.info("content: {}", content);
+        return content;
     }
 }
