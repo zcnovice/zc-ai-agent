@@ -31,6 +31,8 @@ public class LoveApp {
 
     private static final String SYSTEM_PROMPT = "你是一个情感分析助手，你会分析用户的情感，并且给出一个情感分析结果";
 
+    @Resource
+    private VectorStore pgVectorVectorStore;
 
     @Autowired
     //构造函数(要使用数据库对接时不要忘记加上, JdbcTemplate jdbcTemplate)
@@ -100,7 +102,7 @@ public class LoveApp {
     }
 
 
-    //下面是、
+    //下面是
     /* 引入之前定义的Bean */
     @Resource
     private VectorStore loveAppVectorStore;
@@ -114,7 +116,9 @@ public class LoveApp {
                 // 开启日志，便于观察效果
                 .advisors(new MyLoggerAdvisor())
                 // 应用知识库问答
-                .advisors(new QuestionAnswerAdvisor(loveAppVectorStore))
+                //.advisors(new QuestionAnswerAdvisor(loveAppVectorStore))
+                //应用 RAG 检索增强服务(基于Pgvector向量数据库的检索增强)[QuestionAnswerAdvisorg顾问拦截器]
+                .advisors(new QuestionAnswerAdvisor(pgVectorVectorStore))
                 .call()
                 .chatResponse();
         String content = chatResponse.getResult().getOutput().getText();

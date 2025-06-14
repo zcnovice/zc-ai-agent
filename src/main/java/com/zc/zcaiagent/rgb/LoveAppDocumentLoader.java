@@ -62,7 +62,6 @@ public class LoveAppDocumentLoader {
         } catch (IOException e) {
             log.error("Markdown 文档加载失败", e);
         }
-
         /* 最终返回所有文档列表 */
         return allDocuments;
     }

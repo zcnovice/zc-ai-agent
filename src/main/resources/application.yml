@@ -26,15 +26,18 @@ spring:
       base-url: http://localhost:11434
       chat:
         model: deepseek-r1:1.5b
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536 #向量维度(后面不可以跟改，要确定好)
+        distance-type: COSINE_DISTANCE #向量距离类型
+        max-document-batch-size: 10000 #向量批量处理大小
 
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql:///sys?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
+    url: jdbc:postgresql://rm-cn-rno4ayst20001hho.rwlb.rds.aliyuncs.com:5432/yu_ai_agent
+    username: my_user
 
-  spring:
-    datasource:
+
 
 
 
