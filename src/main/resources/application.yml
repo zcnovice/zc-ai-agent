@@ -34,8 +34,9 @@ spring:
         max-document-batch-size: 10000 #向量批量处理大小
 
   datasource:
-    url: jdbc:postgresql://rm-cn-rno4ayst20001hho.rwlb.rds.aliyuncs.com:5432/yu_ai_agent
-    username: my_user
+#    url: jdbc:postgresql://rm-cn-m414aay5f0002emo.rwlb.rds.aliyuncs.com:5432/rui_ai_agent
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
 
 
 

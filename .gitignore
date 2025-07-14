@@ -5,7 +5,7 @@ TestApiKey.java
 application-local.yml
 tmp
 char-memory
-
+file
 ### Java template
 # Compiled class file
 *.class

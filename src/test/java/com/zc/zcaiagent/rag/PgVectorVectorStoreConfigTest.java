@@ -1,4 +1,4 @@
-package com.zc.zcaiagent.rgb;
+package com.zc.zcaiagent.rag;
 
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
@@ -10,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author zcnovice

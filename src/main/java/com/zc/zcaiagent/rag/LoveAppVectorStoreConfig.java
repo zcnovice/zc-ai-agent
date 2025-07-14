@@ -1,4 +1,4 @@
-package com.zc.zcaiagent.rgb;
+package com.zc.zcaiagent.rag;
 
 
 import jakarta.annotation.Resource;
@@ -22,8 +22,12 @@ public class LoveAppVectorStoreConfig {
     @Resource
     private LoveAppDocumentLoader loveAppDocumentLoader;
 
+    @Resource
+    private MyTokenTextSplitter myTokenTextSplitter;
 
-
+    @Resource
+    private MyKeywordEnricher myKeywordEnricher;
+    
     /* (loveAppVectorStore就是Bean的名字)   开始嵌入大模型dashscopeEmbeddingModel*/
     @Bean
     VectorStore loveAppVectorStore(EmbeddingModel dashscopeEmbeddingModel) {
@@ -35,7 +39,13 @@ public class LoveAppVectorStoreConfig {
         SimpleVectorStore simpleVectorStore = SimpleVectorStore.builder(dashscopeEmbeddingModel).build();
         // 加载文档
         List<Document> documents = loveAppDocumentLoader.loadMarkdowns();
-        simpleVectorStore.add(documents);
+        //把加载的文档切割了
+        //List<Document> splitDocuments =myTokenTextSplitter.splitDocuments(documents);
+
+        //元数据增强器
+        List<Document> enrichDocuments = myKeywordEnricher.enrichDocuments(documents);
+        //存放文档切割后的结果到向量数据库中
+        simpleVectorStore.add(enrichDocuments);
         return simpleVectorStore;
     }
 
