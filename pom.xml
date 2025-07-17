@@ -166,6 +166,13 @@
             <version>1.0.0-M6</version>
         </dependency>
 
+        <!-- 使用 jsoup 库实现网页 -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -24,7 +24,7 @@ import java.util.List;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_CONVERSATION_ID_KEY;
 import static org.springframework.ai.chat.client.advisor.AbstractChatMemoryAdvisor.CHAT_MEMORY_RETRIEVE_SIZE_KEY;
 
-@Component
+//@Component
 @Slf4j
 public class LoveApp {
 
@@ -38,7 +38,7 @@ public class LoveApp {
 
 
 
-    @Autowired
+//    @Autowired
     //构造函数(要使用数据库对接时不要忘记加上, JdbcTemplate jdbcTemplate)
     public LoveApp(ChatModel dashscopeChatModel) {
         //初始化基于文件的对话记忆
