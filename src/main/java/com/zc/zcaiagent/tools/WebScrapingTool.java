@@ -11,6 +11,7 @@ import java.io.IOException;
 public class WebScrapingTool {
 
     @Tool(description = "Scrape the content of a web page")
+    /* 注意这里的返回值是String */
     public String scrapeWebPage(@ToolParam(description = "URL of the web page to scrape") String url) {
         try {
         // Document是文档对象
