@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 /* 初始化基于内存的向量数据库 */
-//@Configuration
+@Configuration
 public class LoveAppVectorStoreConfig {
     /* 引入文档前面(刚才)定义的加载器 */
     @Resource

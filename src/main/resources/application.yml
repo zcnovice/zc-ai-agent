@@ -1,5 +1,6 @@
 logging:
   level:
+#    指定需要开启日志的类（也可以只指定org.springframework.ai   这样下面的包就都会生效了）
     org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor: debug
 
 spring:
